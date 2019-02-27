@@ -8,7 +8,7 @@ void insert(int val);
 void insertAtTop(int val);
 void del(int val);
 int search(int val);
-struct node *first;
+node *first;
 
 int main(void)
 {
