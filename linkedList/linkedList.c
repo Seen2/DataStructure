@@ -13,8 +13,10 @@ int main(void)
   first = malloc(sizeof(struct node));
   first->data = 10;
   first->next = NULL;
-  display();
+//   display();
   insert(20);
+//   printf("new \n");
+  display();
 }
 
 //display the entire list
@@ -31,12 +33,15 @@ void insert(int val)
 {
   for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
-    if (ptr->data < val)
+//     printf("ok\n");
+    if (ptr->next==NULL)
     {
       struct node *temp = malloc(sizeof(struct node));
+      temp->data=val;
       temp->next = ptr->next;
       ptr->next = temp;
     }
+    ptr=ptr->next;
   }
-  display();
+//   display();
 }
