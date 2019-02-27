@@ -13,12 +13,18 @@ int main(void)
 {
   //creates linked list
   first = malloc(sizeof(struct node));
-  first->data = 10;
+  first->data = 2;
   first->next = NULL;
-  insert(20);
+  insert(3);
+  insertAtTop(1);
+//   display();
+//   del(3);
+//   insert(4);
+  del(1);
+  insert(4);
   insertAtTop(0);
-  display();
-  del(20);
+  insert(4);
+ 
   display();
 }
 
@@ -38,10 +44,12 @@ void insert(int val)
   {
     if (ptr->next==NULL)
     {
-      struct node *temp = malloc(sizeof(struct node));
-      temp->data=val;
-      temp->next = ptr->next;
-      ptr->next = temp;
+      printf("ok..\n");
+      ptr->next = malloc(sizeof(struct node));
+      ptr=ptr->next;
+      ptr->data=val;
+      ptr->next=NULL;
+      break;
     }
     ptr=ptr->next;
   }
@@ -50,6 +58,10 @@ void insert(int val)
 
 void insertAtTop(int val)
 {
+    if (first->next==NULL)
+    {
+      insert(val);
+    }
     struct node *temp=malloc(sizeof(struct node));
     temp->next=first;
     temp->data=val;
@@ -60,10 +72,15 @@ void insertAtTop(int val)
  {
      for(struct node *ptr=first;ptr!=NULL;ptr=ptr->next)
      {
+         
          if(ptr->data==val)
          {
-             ptr=ptr->next;
-             break;
+             if(ptr==first)
+             {
+                 first=ptr->next;
+                 free(ptr);
+                 break;
+             }           
          }
      }
  }
