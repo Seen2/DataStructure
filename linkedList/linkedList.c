@@ -5,6 +5,8 @@
 
 void display();
 void insert(int val);
+void insertAtTop(int val);
+void del(int val);
 struct node *first;
 
 int main(void)
@@ -13,9 +15,10 @@ int main(void)
   first = malloc(sizeof(struct node));
   first->data = 10;
   first->next = NULL;
-//   display();
   insert(20);
-//   printf("new \n");
+  insertAtTop(0);
+  display();
+  del(20);
   display();
 }
 
@@ -28,12 +31,11 @@ void display()
     printf("%i \n", ptr->data);
   }
 }
-//insert to a list
+//insert to end of a list.
 void insert(int val)
 {
   for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
-//     printf("ok\n");
     if (ptr->next==NULL)
     {
       struct node *temp = malloc(sizeof(struct node));
@@ -43,5 +45,25 @@ void insert(int val)
     }
     ptr=ptr->next;
   }
-//   display();
 }
+//insert at head of linked list.
+
+void insertAtTop(int val)
+{
+    struct node *temp=malloc(sizeof(struct node));
+    temp->next=first;
+    temp->data=val;
+    first=temp;
+}
+// delete from a list.
+ void del(int val)
+ {
+     for(struct node *ptr=first;ptr!=NULL;ptr=ptr->next)
+     {
+         if(ptr->data==val)
+         {
+             ptr=ptr->next;
+             break;
+         }
+     }
+ }
