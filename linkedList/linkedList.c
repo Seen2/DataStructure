@@ -17,14 +17,12 @@ int main(void)
   first->next = NULL;
   insert(3);
   insertAtTop(1);
-//   display();
-//   del(3);
-//   insert(4);
-  del(1);
   insert(4);
-  insertAtTop(0);
+  insertAtTop(-1);
+  display();
+  printf("\n  \n");
   insert(4);
- 
+  del(-1);
   display();
 }
 
@@ -42,45 +40,47 @@ void insert(int val)
 {
   for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
-    if (ptr->next==NULL)
+    if (ptr->next == NULL)
     {
-      printf("ok..\n");
       ptr->next = malloc(sizeof(struct node));
-      ptr=ptr->next;
-      ptr->data=val;
-      ptr->next=NULL;
+      ptr = ptr->next;
+      ptr->data = val;
+      ptr->next = NULL;
       break;
     }
-    ptr=ptr->next;
+    ptr = ptr->next;
   }
 }
 //insert at head of linked list.
 
 void insertAtTop(int val)
 {
-    if (first->next==NULL)
-    {
-      insert(val);
-    }
-    struct node *temp=malloc(sizeof(struct node));
-    temp->next=first;
-    temp->data=val;
-    first=temp;
+  if (first->next == NULL)
+  {
+    insert(val);
+  }
+  struct node *temp = malloc(sizeof(struct node));
+  temp->next = first;
+  temp->data = val;
+  first = temp;
 }
 // delete from a list.
- void del(int val)
- {
-     for(struct node *ptr=first;ptr!=NULL;ptr=ptr->next)
-     {
-         
-         if(ptr->data==val)
-         {
-             if(ptr==first)
-             {
-                 first=ptr->next;
-                 free(ptr);
-                 break;
-             }           
-         }
-     }
- }
+void del(int val)
+{
+  for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
+  {
+    if (ptr->data == val && ptr == first)
+    {
+      free(first);
+      first = ptr->next;
+      free(ptr);
+      break;
+    }
+
+    if (ptr->next->data == val)
+    {
+      ptr->next = ptr->next->next;
+      break;
+    }
+  }
+}
