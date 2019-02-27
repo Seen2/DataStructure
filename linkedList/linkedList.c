@@ -13,7 +13,7 @@ node *first;
 int main(void)
 {
   //creates linked list
-  first = malloc(sizeof(struct node));
+  first = malloc(sizeof(node));
   first->data = 2;
   first->next = NULL;
   insert(3);
@@ -33,7 +33,7 @@ int main(void)
 void display()
 {
 
-  for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
+  for (node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
     printf("%i \n", ptr->data);
   }
@@ -41,11 +41,11 @@ void display()
 //insert to end of a list.
 void insert(int val)
 {
-  for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
+  for (node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
     if (ptr->next == NULL)
     {
-      ptr->next = malloc(sizeof(struct node));
+      ptr->next = malloc(sizeof(node));
       ptr = ptr->next;
       ptr->data = val;
       ptr->next = NULL;
@@ -63,7 +63,7 @@ void insertAtTop(int val)
   {
     insert(val);
   }
-  struct node *temp = malloc(sizeof(struct node));
+  node *temp = malloc(sizeof(node));
   temp->next = first;
   temp->data = val;
   first = temp;
@@ -71,7 +71,7 @@ void insertAtTop(int val)
 // delete from a list.
 void del(int val)
 {
-  for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
+  for (node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
     if (ptr->data == val && ptr == first)
     {
@@ -91,7 +91,7 @@ void del(int val)
 
 int search(int val)
 {
-  for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
+  for (node *ptr = first; ptr != NULL; ptr = ptr->next)
   {
     if (ptr->data == val)
     {
