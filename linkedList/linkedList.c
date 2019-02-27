@@ -7,6 +7,7 @@ void display();
 void insert(int val);
 void insertAtTop(int val);
 void del(int val);
+int search(int val);
 struct node *first;
 
 int main(void)
@@ -20,10 +21,12 @@ int main(void)
   insert(4);
   insertAtTop(-1);
   display();
-  printf("\n  \n");
+  printf("\n new \n");
   insert(4);
   del(-1);
   display();
+  search(4);
+  search(-1);
 }
 
 //display the entire list
@@ -51,6 +54,7 @@ void insert(int val)
     ptr = ptr->next;
   }
 }
+
 //insert at head of linked list.
 
 void insertAtTop(int val)
@@ -83,4 +87,19 @@ void del(int val)
       break;
     }
   }
+}
+
+int search(int val)
+{
+  for (struct node *ptr = first; ptr != NULL; ptr = ptr->next)
+  {
+    if (ptr->data == val)
+    {
+      printf("%i is in the list. \n", val);
+      free(ptr);
+      return 0;
+    }
+  }
+  printf("%i isn't in the list.\n", val);
+  return 0;
 }
