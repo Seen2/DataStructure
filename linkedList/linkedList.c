@@ -19,11 +19,11 @@ int main(void)
   insert(3);
   insertAtTop(1);
   insert(4);
-  insertAtTop(-1);
+  insertAtTop(-2);
   display();
   printf("\n new \n");
   insert(4);
-  del(-1);
+  del(-2);
   display();
   search(4);
   search(-1);
